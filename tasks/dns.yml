@@ -1,0 +1,8 @@
+---
+- name: Set multiple lookup addresses on all visible adapters (usually physical adapters that are in the Up state)
+  ansible.windows.win_dns_client:
+    adapter_names: "{{ item.adapter }}"
+    dns_servers:
+    - "{{ item.primary }}"
+    - "{{ item.secondary }}"
+  loop: "{{ dns }}"

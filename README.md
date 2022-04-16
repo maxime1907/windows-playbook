@@ -58,9 +58,19 @@ This playbook installs and configures most of the software I use on my Windows 1
 
 ## Installation
 
-### Prepare your Windows host ⏲
+### All in one method
 
-#### **This playbook was tested on Windows 10 2004 and Windows 11 21H2 (Pro, Ent). Other versions may work but have not tried.**
+1) Right click on ansible_requirements.ps1 and select `Run with powershell`
+
+2) Copy default.config.yml to config.yml and edit what you want to install in it
+
+3) Right click on ansible_install.ps1 and select `Run with powershell`
+
+### Separate machines
+
+#### Prepare your Windows host ⏲
+
+##### **This playbook was tested on Windows 10 2004 and Windows 11 21H2 (Pro, Ent). Other versions may work but have not tried.**
 
 Copy and paste the code below into your PowerShell terminal to get your Windows machine ready to work with Ansible.
 
@@ -73,7 +83,7 @@ $file = "$env:temp\setup.ps1"
 powershell.exe -ExecutionPolicy ByPass -File $file -Verbose
 ```
 
-### Ansible Control node 🕹
+#### Ansible Control node 🕹
 
 1. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html):
 
@@ -85,7 +95,7 @@ powershell.exe -ExecutionPolicy ByPass -File $file -Verbose
 4. Add the IP address and credentials of your Windows machine into the `inventory` file
 5. Run `ansible-playbook main.yml` inside this directory.
 
-### Running a specific set of tagged tasks
+#### Running a specific set of tagged tasks
 
 You can filter which part of the provisioning process to run by specifying a set of tags using `ansible-playbook`  `--tags` flag. The tags available are `choco` , `debloat` , `desktop` , `explorer` , `fonts` , `hostname` , `mouse` , `power` , `sounds` , `start_menu` , `taskbar` , `updates` , `windows_features` , `wsl` .
 

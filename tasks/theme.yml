@@ -1,0 +1,42 @@
+---
+- name: Ensure HighContrast Theme is configured.
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\HighContrast
+    name: "Pre-High Contrast Scheme"
+    data: "C:\\Windows\\resources\\Themes\\{{ theme.name }}.theme"
+    type: string
+
+- name: Ensure AppUseLight Theme is configured.
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize
+    name: "AppsUseLightTheme"
+    data: "{{ theme.app_use_light_theme }}"
+    type: dword
+
+- name: Ensure ColorPrevalence Theme is configured.
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize
+    name: "ColorPrevalence"
+    data: "{{ theme.color_prevalence }}"
+    type: dword
+
+- name: Ensure Transparency Theme is configured.
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize
+    name: "EnableTransparency"
+    data: "{{ theme.enable_transparency }}"
+    type: dword
+
+- name: Ensure AppUseLight Theme is configured.
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize
+    name: "SystemUsesLightTheme"
+    data: "{{ theme.system_use_light_theme }}"
+    type: dword
+
+- name: Ensure CurrentTheme Theme is configured.
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Themes
+    name: "CurrentTheme"
+    data: "C:\\Windows\\resources\\Themes\\{{ theme.name }}.theme"
+    type: string

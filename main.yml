@@ -2,7 +2,7 @@
 - hosts: all
 
   vars_files:
-    - default.config.yml
+    - config.yml
 
   pre_tasks:
     - name: Include playbook configuration.
@@ -23,6 +23,9 @@
     - import_tasks: tasks/chocolatey.yml
       tags: ["choco"]
 
+    - import_tasks: tasks/dns.yml
+      tags: ["dns"]
+
     - import_tasks: tasks/windows_features.yml
       when: install_windows_features
       tags: ["windows_features"]
@@ -38,6 +41,10 @@
     - import_tasks: tasks/explorer.yml
       when: configure_explorer
       tags: ["explorer"]
+
+    - import_tasks: tasks/theme.yml
+      when: configure_theme
+      tags: ["theme"]
 
     - import_tasks: tasks/taskbar.yml
       when: configure_taskbar

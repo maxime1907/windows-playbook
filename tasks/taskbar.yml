@@ -38,3 +38,18 @@
     path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Taskband
     name: Favorites
     state: absent
+
+- name: Change task bar position
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\MMStuckRects3
+    name: Settings
+    data: >-
+      hex:30,00,00,00,fe,ff,ff,ff,7a,f4,00,00,{{ taskbar.position }},00,00,00,30,00,00,00,30,00,00,00,00,00,00,00,08,04,00,00,80,07,00,00,38,04,00,00,60,00,00,00,01,00,00,00
+    type: binary
+
+- name: Change task bar alignment
+  ansible.windows.win_regedit:
+    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced
+    name: TaskbarAl
+    data: "{{ taskbar.alignment }}"
+    type: dword

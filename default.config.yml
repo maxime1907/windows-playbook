@@ -3,7 +3,6 @@ configure_explorer: true
 configure_hostname: false
 custom_hostname: windows-ansible
 configure_start_menu: true
-configure_taskbar: true
 disable_mouse_acceleration: true
 remote_desktop_enabled: true
 remove_desktop_icons: false
@@ -26,7 +25,10 @@ update_categories:
   # - Upgrades
 
 change_power_plan: true
-power_plan: "high performance"
+# High performance: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+# Balanced: 381b4222-f694-41f0-9685-ff5bb260df2e
+# Power saver: a1841308-3541-4fab-bc81-f71556f20b4a
+power_plan: "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c"
 
 choco_installed_packages:
   - 7zip
@@ -49,6 +51,39 @@ choco_installed_packages:
   - vlc
   - vscode
   - zoom
+
+# Set cloudflare DNS
+dns:
+  - adapter: 'Ethernet'
+    primary: 1.1.1.1
+    secondary: 1.0.0.4
+
+# Set theme to dark mode
+configure_theme: true
+theme:
+  # List of valid values
+  # dark
+  # aero
+  # themeA
+  # themeB
+  # themeC
+  # themeD
+  name: "dark"
+  app_use_light_theme: 0
+  color_prevalence: 0
+  enable_transparency: 1
+  system_use_light_theme: 0
+
+configure_taskbar: true
+taskbar:
+  # 00 = Left
+  # 01 = Top
+  # 02 = Right
+  # 03 = Bottom
+  position: 03
+  # 0 = Left
+  # 1 = Middle
+  alignment: 0
 
 install_fonts: true
 installed_nerdfonts:
